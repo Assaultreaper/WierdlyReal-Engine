@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{7be32bf7-15cd-4ab7-9d23-f31e829144d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{32131350-32d6-49fc-ac81-ec5706c7551c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\VBO">
+      <UniqueIdentifier>{bbd12258-9652-47c8-a2ab-3706bb29596b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\EBO">
+      <UniqueIdentifier>{39124396-2e81-4cd5-a502-3f18c70e47b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\VAO">
+      <UniqueIdentifier>{c21d562d-fbfd-4a13-92da-5232146c8140}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{59bc8cac-63ab-47a3-a0f8-d1995ef3900d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{b94e2f9d-ed58-47f1-b116-ff98498e385c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh">
+      <UniqueIdentifier>{150bc149-4d3d-40f8-9e5e-398403ee1791}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="EBO.cpp">
+      <Filter>Shaders\EBO</Filter>
+    </ClCompile>
+    <ClCompile Include="VAO.cpp">
+      <Filter>Shaders\VAO</Filter>
+    </ClCompile>
+    <ClCompile Include="VBO.cpp">
+      <Filter>Shaders\VBO</Filter>
+    </ClCompile>
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Shader.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="EBO.h">
+      <Filter>Shaders\EBO</Filter>
+    </ClInclude>
+    <ClInclude Include="VAO.h">
+      <Filter>Shaders\VAO</Filter>
+    </ClInclude>
+    <ClInclude Include="VBO.h">
+      <Filter>Shaders\VBO</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\Shaders\fragment.glsl">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="assets\Shaders\lightfragment.glsl">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="assets\Shaders\lightVertex.glsl">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="assets\Shaders\vertex.glsl">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
