@@ -128,6 +128,7 @@ int main()
 
 		camera.Inputs(window);
 		camera.updateMatrix(45.0f, 0.1f, 100.0f);
+		glfwSetWindowTitle(window, settings.GetCameraLocation(camera, true));
 		
 		floor.Draw(shaderProgram, camera);
 		light.Draw(lightShader, camera);

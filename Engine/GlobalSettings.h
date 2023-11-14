@@ -4,6 +4,7 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <iostream>
+#include "Camera.h"
 
     class GlobalSettings
     {
@@ -12,9 +13,7 @@
         glm::vec2 WindowSize = glm::vec2(800, 800);
 #pragma endregion
 
-#pragma region Directories
-
-#pragma endregion
+        const char* GetCameraLocation(const Camera& camera, const bool inUse = false);
 
     };
 
