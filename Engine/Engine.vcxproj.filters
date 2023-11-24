@@ -16,103 +16,61 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{7be32bf7-15cd-4ab7-9d23-f31e829144d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Global Resources">
+      <UniqueIdentifier>{dc3137fd-104b-4a39-87eb-b39c11cc7acd}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Shaders">
-      <UniqueIdentifier>{32131350-32d6-49fc-ac81-ec5706c7551c}</UniqueIdentifier>
+      <UniqueIdentifier>{9aea52d4-d758-4072-9148-6da47fcf155d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders\VBO">
-      <UniqueIdentifier>{bbd12258-9652-47c8-a2ab-3706bb29596b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shaders\EBO">
-      <UniqueIdentifier>{39124396-2e81-4cd5-a502-3f18c70e47b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shaders\VAO">
-      <UniqueIdentifier>{c21d562d-fbfd-4a13-92da-5232146c8140}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Textures">
-      <UniqueIdentifier>{59bc8cac-63ab-47a3-a0f8-d1995ef3900d}</UniqueIdentifier>
+    <Filter Include="Transformations">
+      <UniqueIdentifier>{2408b56d-f2cc-4d0d-8d21-ee980a871a3f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Camera">
-      <UniqueIdentifier>{b94e2f9d-ed58-47f1-b116-ff98498e385c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mesh">
-      <UniqueIdentifier>{150bc149-4d3d-40f8-9e5e-398403ee1791}</UniqueIdentifier>
+      <UniqueIdentifier>{ee460610-9a9c-4866-a325-c5a243dd0405}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalVaribles.cpp">
+      <Filter>Global Resources</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="EBO.cpp">
-      <Filter>Shaders\EBO</Filter>
-    </ClCompile>
-    <ClCompile Include="VAO.cpp">
-      <Filter>Shaders\VAO</Filter>
-    </ClCompile>
-    <ClCompile Include="VBO.cpp">
-      <Filter>Shaders\VBO</Filter>
-    </ClCompile>
-    <ClCompile Include="stb.cpp">
+    <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Textures</Filter>
+    <ClCompile Include="Transformation.cpp">
+      <Filter>Transformations</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GlobalVaribles.h">
+      <Filter>Global Resources</Filter>
+    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="EBO.h">
-      <Filter>Shaders\EBO</Filter>
-    </ClInclude>
-    <ClInclude Include="VAO.h">
-      <Filter>Shaders\VAO</Filter>
-    </ClInclude>
-    <ClInclude Include="VBO.h">
-      <Filter>Shaders\VBO</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Textures</Filter>
+    <ClInclude Include="Transformation.h">
+      <Filter>Transformations</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Mesh</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\Shaders\fragment.glsl">
+    <None Include="Assets\Shaders\vertex.glsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="assets\Shaders\lightfragment.glsl">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="assets\Shaders\lightVertex.glsl">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="assets\Shaders\vertex.glsl">
+    <None Include="Assets\Shaders\fragment.glsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>

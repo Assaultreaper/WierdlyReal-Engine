@@ -1,0 +1,2 @@
+assimp-vc142-mtd.lib filter=lfs diff=lfs merge=lfs -text
+assimp-vc142-mtd.pdb filter=lfs diff=lfs merge=lfs -text
