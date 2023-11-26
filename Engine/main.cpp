@@ -1,8 +1,6 @@
 #include "GlobalVaribles.h"
 
-GlobalVariables _global;
-
-const glm::vec2 WindowSize(_global.SCR_WIDTH, _global.SCR_HEIGHT);
+const glm::vec2 WindowSize(GlobalVariables::_global.SCR_WIDTH, GlobalVariables::_global.SCR_HEIGHT);
 
 int main()
 {
@@ -11,8 +9,8 @@ int main()
 
 	// Tell GLFW what version of OpenGL we are using 
 	// In this case we are using OpenGL 4.5
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, _global.OPEN_GL_VERSION);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, _global.OPEN_GL_VERSION);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, GlobalVariables::_global.OPEN_GL_VERSION);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, GlobalVariables::_global.OPEN_GL_VERSION);
 	// Tell GLFW we are using the CORE profile
 	// So that means we only have the modern functions
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -30,7 +28,11 @@ int main()
 	}
 
 	glfwMakeContextCurrent(window);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwSetFramebufferSizeCallback(window, GlobalVariables::_global.framebuffer_size_callback);
+	glfwSetCursorPosCallback(window, GlobalVariables::_global.mouse_callback);
+	glfwSetScrollCallback(window, GlobalVariables::_global.scroll_callback);
+
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	//Load GLAD so it configures OpenGL
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -170,18 +172,15 @@ int main()
 	shaderProgram.setInt("texture1", 0);
 	shaderProgram.setInt("texture2", 1);
 
-	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)_global.SCR_WIDTH / (float)_global.SCR_HEIGHT, 0.1f, 100.0f);
-	shaderProgram.setMat4("projection", projection);
-
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
 	{
 		float currentFrame = static_cast<float>(glfwGetTime());
-		_global.deltaTime = currentFrame - _global.lastFrame;
-		_global.lastFrame = currentFrame;
+		GlobalVariables::_global.deltaTime = currentFrame - GlobalVariables::_global.lastFrame;
+		GlobalVariables::_global.lastFrame = currentFrame;
 
 		// input
-		_global.processInput(window);
+		GlobalVariables::_global.processInput(window);
 		
 		// rendering commands here
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
@@ -194,7 +193,10 @@ int main()
 
 		shaderProgram.use();
 
-		glm::mat4 view = glm::lookAt(_global.cameraPos, _global.cameraPos + _global.cameraFront, _global.cameraUp);
+		glm::mat4 projection = glm::perspective(glm::radians(GlobalVariables::_global.camera.Zoom), (float)GlobalVariables::_global.SCR_WIDTH / (float)GlobalVariables::_global.SCR_HEIGHT, 0.1f, 100.0f);
+		shaderProgram.setMat4("projection", projection);
+
+		glm::mat4 view = GlobalVariables::_global.camera.GetViewMatrix();
 		shaderProgram.setMat4("view", view);
 
 		glBindVertexArray(VAO);
