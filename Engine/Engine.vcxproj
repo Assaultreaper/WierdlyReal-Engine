@@ -152,13 +152,7 @@
     <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\FragColor.glsl" />
     <None Include="Assets\Shaders\fragment.glsl" />
-    <None Include="Assets\Shaders\LightFrag.glsl" />
-    <None Include="Assets\Shaders\LightVert.glsl" />
-    <None Include="Assets\Shaders\MaterialFrag.glsl" />
-    <None Include="Assets\Shaders\MaterialVert.glsl" />
-    <None Include="Assets\Shaders\VertColor.glsl" />
     <None Include="Assets\Shaders\vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

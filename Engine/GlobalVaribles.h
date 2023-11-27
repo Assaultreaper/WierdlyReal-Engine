@@ -29,7 +29,6 @@ public:
 	float lastFrame = 0.0f;
 
 	void processInput(GLFWwindow* window);
-	unsigned int loadTexture(char const* path);
 	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 	static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
