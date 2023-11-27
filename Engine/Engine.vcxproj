@@ -138,28 +138,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="cMesh.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="GlobalVaribles.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="Transformation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="cMesh.h" />
     <ClInclude Include="GlobalVaribles.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\FragColor.glsl" />
-    <None Include="Assets\Shaders\fragment.glsl" />
-    <None Include="Assets\Shaders\LightFrag.glsl" />
-    <None Include="Assets\Shaders\LightVert.glsl" />
-    <None Include="Assets\Shaders\MaterialFrag.glsl" />
-    <None Include="Assets\Shaders\MaterialVert.glsl" />
-    <None Include="Assets\Shaders\VertColor.glsl" />
-    <None Include="Assets\Shaders\vertex.glsl" />
+    <None Include="FragmentShader.glsl" />
+    <None Include="LightFragmentShader.glsl" />
+    <None Include="LightVertexShader.glsl" />
+    <None Include="VertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

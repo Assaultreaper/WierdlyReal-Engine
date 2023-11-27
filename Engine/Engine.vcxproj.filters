@@ -28,6 +28,12 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{ee460610-9a9c-4866-a325-c5a243dd0405}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cMesh">
+      <UniqueIdentifier>{e484fb50-4dbd-40e1-a131-d4e5e2201adb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{ac5cf23d-e473-47ea-be92-5d2306cde654}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,6 +57,12 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
+    <ClCompile Include="cMesh.cpp">
+      <Filter>cMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GlobalVaribles.h">
@@ -65,30 +77,24 @@
     <ClInclude Include="Camera.h">
       <Filter>Camera</Filter>
     </ClInclude>
+    <ClInclude Include="cMesh.h">
+      <Filter>cMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\vertex.glsl">
+    <None Include="FragmentShader.glsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\fragment.glsl">
+    <None Include="LightFragmentShader.glsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\FragColor.glsl">
+    <None Include="LightVertexShader.glsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\VertColor.glsl">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Assets\Shaders\LightFrag.glsl">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Assets\Shaders\LightVert.glsl">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Assets\Shaders\MaterialFrag.glsl">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Assets\Shaders\MaterialVert.glsl">
+    <None Include="VertexShader.glsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
