@@ -1,7 +1,7 @@
 #include "Model.h"
 
 Model::Model(const std::string& path, bool gamma) : gammaCorrection(gamma) {
-    loadModel(path);
+    loadModel("assets/Models/" + path + "/" + path + ".obj");
 }
 
 void Model::Draw(Shader& shader) {

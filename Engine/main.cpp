@@ -36,11 +36,13 @@ int main()
 		return -1;
 	}
 
+	stbi_set_flip_vertically_on_load(true);
+
 	glEnable(GL_DEPTH_TEST);
 
 	Shader MaterialShader("VertexShader.glsl", "FragmentShader.glsl");
 
-	Model Skull("Assets/Models/Skull/Skull.obj");
+	Model Backpack("backpack");
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -53,7 +55,7 @@ int main()
 		GlobalVariables::_global.processInput(window);
 		
 		// rendering commands here
-		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+		glClearColor(50.0f / 255.0f, 205.0f / 255.0f, 50.0f / 255.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		MaterialShader.use();
@@ -64,11 +66,10 @@ int main()
 
 		// render the loaded model
 		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.1f));	// it's a bit too big for our scene, so scale it down
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -2.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.5f));	// it's a bit too big for our scene, so scale it down
 		MaterialShader.setMat4("model", model);
-		Skull.Draw(MaterialShader);
-
+		Backpack.Draw(MaterialShader);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
