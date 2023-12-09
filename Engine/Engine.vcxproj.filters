@@ -34,6 +34,12 @@
     <Filter Include="Model">
       <UniqueIdentifier>{ac5cf23d-e473-47ea-be92-5d2306cde654}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders\DepthTesting">
+      <UniqueIdentifier>{ad8504f6-78bb-4268-b037-b49ef6e22d52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\StencilTesting">
+      <UniqueIdentifier>{a3ed8159-3142-46cb-9ac9-549ed0af47a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -85,17 +91,32 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FragmentShader.glsl">
+    <None Include="Assets\Shaders\FragmentShader.glsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="LightFragmentShader.glsl">
+    <None Include="Assets\Shaders\LightFragmentShader.glsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="LightVertexShader.glsl">
+    <None Include="Assets\Shaders\LightVertexShader.glsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="VertexShader.glsl">
+    <None Include="Assets\Shaders\VertexShader.glsl">
       <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\DepthTesting.vert">
+      <Filter>Resource Files\Shaders\DepthTesting</Filter>
+    </None>
+    <None Include="Assets\Shaders\DepthTesting.frag">
+      <Filter>Resource Files\Shaders\DepthTesting</Filter>
+    </None>
+    <None Include="Assets\Shaders\ModelShader.frag">
+      <Filter>Resource Files\Shaders\StencilTesting</Filter>
+    </None>
+    <None Include="Assets\Shaders\ModelShader.vert">
+      <Filter>Resource Files\Shaders\StencilTesting</Filter>
+    </None>
+    <None Include="Assets\Shaders\ModelStencil.frag">
+      <Filter>Resource Files\Shaders\StencilTesting</Filter>
     </None>
   </ItemGroup>
 </Project>

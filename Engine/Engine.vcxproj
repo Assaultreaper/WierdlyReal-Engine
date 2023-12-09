@@ -156,10 +156,15 @@
     <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FragmentShader.glsl" />
-    <None Include="LightFragmentShader.glsl" />
-    <None Include="LightVertexShader.glsl" />
-    <None Include="VertexShader.glsl" />
+    <None Include="Assets\Shaders\DepthTesting.frag" />
+    <None Include="Assets\Shaders\DepthTesting.vert" />
+    <None Include="Assets\Shaders\FragmentShader.glsl" />
+    <None Include="Assets\Shaders\LightFragmentShader.glsl" />
+    <None Include="Assets\Shaders\LightVertexShader.glsl" />
+    <None Include="Assets\Shaders\ModelShader.frag" />
+    <None Include="Assets\Shaders\ModelShader.vert" />
+    <None Include="Assets\Shaders\ModelStencil.frag" />
+    <None Include="Assets\Shaders\VertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
