@@ -1,15 +1,17 @@
 #ifndef _GLOBAL_VARIABLES_H_
 #define _GLOBAL_VARIBALES_H_
 
-#include <iostream>
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
-#include "stb/stb_image.h"
+#include <GLFW/glfw3.h>
+#include <iostream>
+#include <nlohmann/json.hpp>
+#include <fstream>
 
-#include "Shader.h"
-#include "Transformation.h"
 #include "Camera.h"
+#include "Shader.h"
+#include "stb/stb_image.h"
+#include "Transformation.h"
 
 class GlobalVariables
 {
@@ -27,9 +29,8 @@ public:
 
 	float deltaTime = 0.0f;
 	float lastFrame = 0.0f;
-
+		
 	void processInput(GLFWwindow* window);
-	unsigned int loadTexture(char const* path);
 	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 	static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);

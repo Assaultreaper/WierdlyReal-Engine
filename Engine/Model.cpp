@@ -1,7 +1,7 @@
 #include "Model.h"
 
 Model::Model(const std::string& path, bool gamma) : gammaCorrection(gamma) {
-    loadModel("assets/Models/" + path + "/" + path + ".obj");
+    loadModel("assets/Models/" + path + "/" + path + ".ply");
 }
 
 void Model::Draw(Shader& shader) {
@@ -141,7 +141,7 @@ unsigned int TextureFromFile(const char* path, const std::string& directory, boo
     int width, height, nrComponents;
     unsigned char* data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
     if (data) {
-        GLenum format;
+        GLenum format{};
         if (nrComponents == 1)
             format = GL_RED;
         else if (nrComponents == 3)

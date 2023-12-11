@@ -145,6 +145,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Transformation.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,18 +154,48 @@
     <ClInclude Include="GlobalVaribles.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\Default_Models\Cube.json" />
+    <None Include="assets\Default_Models\Plane.json" />
+    <None Include="assets\Default_Models\quad.json" />
+    <None Include="assets\Default_Models\SkyboxCube.json" />
+    <None Include="assets\Default_Models\transparent.json" />
+    <None Include="assets\Shaders\advanced_glsl.vs" />
+    <None Include="assets\Shaders\astroids.fs" />
+    <None Include="assets\Shaders\astroids.vs" />
+    <None Include="assets\Shaders\Blend.frag" />
+    <None Include="assets\Shaders\Blend.vert" />
+    <None Include="assets\Shaders\blue.fs" />
+    <None Include="assets\Shaders\CubeMap.frag" />
+    <None Include="assets\Shaders\CubeMap.vert" />
     <None Include="Assets\Shaders\DepthTesting.frag" />
     <None Include="Assets\Shaders\DepthTesting.vert" />
     <None Include="Assets\Shaders\FragmentShader.glsl" />
+    <None Include="assets\Shaders\framebuffer.fs" />
+    <None Include="assets\Shaders\framebuffer.vs" />
+    <None Include="assets\Shaders\framebuffer_screen.fs" />
+    <None Include="assets\Shaders\framebuffer_screen.vs" />
+    <None Include="assets\Shaders\green.fs" />
     <None Include="Assets\Shaders\LightFragmentShader.glsl" />
     <None Include="Assets\Shaders\LightVertexShader.glsl" />
     <None Include="Assets\Shaders\ModelShader.frag" />
     <None Include="Assets\Shaders\ModelShader.vert" />
     <None Include="Assets\Shaders\ModelStencil.frag" />
+    <None Include="assets\Shaders\normalVisualize.fs" />
+    <None Include="assets\Shaders\normalVisualize.gs" />
+    <None Include="assets\Shaders\normalVisualize.vs" />
+    <None Include="assets\Shaders\planet.fs" />
+    <None Include="assets\Shaders\planet.vs" />
+    <None Include="assets\Shaders\red.fs" />
+    <None Include="assets\Shaders\shader.fs" />
+    <None Include="assets\Shaders\shader.vs" />
+    <None Include="assets\Shaders\Skybox.frag" />
+    <None Include="assets\Shaders\Skybox.vert" />
     <None Include="Assets\Shaders\VertexShader.glsl" />
+    <None Include="assets\Shaders\yellow.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
