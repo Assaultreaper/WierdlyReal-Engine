@@ -15,6 +15,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <glm/gtc/matrix_transform.hpp>
 
 unsigned int TextureFromFile(const char* path, const std::string& directory, bool gamma = false);
 
@@ -28,6 +29,11 @@ public:
     Model(const std::string& path, bool gamma = false);
 
     void Draw(Shader& shader);
+
+    void loadPLYModel(const std::string& path);
+
+    void Translate(const glm::vec3& translation, Shader& shader);
+    void Scale(const glm::vec3& scale, Shader& shader);
 
 private:
     void loadModel(const std::string& path);

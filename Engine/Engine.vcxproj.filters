@@ -22,9 +22,6 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{9aea52d4-d758-4072-9148-6da47fcf155d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Transformations">
-      <UniqueIdentifier>{2408b56d-f2cc-4d0d-8d21-ee980a871a3f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Camera">
       <UniqueIdentifier>{ee460610-9a9c-4866-a325-c5a243dd0405}</UniqueIdentifier>
     </Filter>
@@ -64,6 +61,9 @@
     <Filter Include="Textures">
       <UniqueIdentifier>{4a5b1e8b-c199-4baf-875a-54ac156b1a04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders\Starwars">
+      <UniqueIdentifier>{1d1bfda0-d724-41af-83e4-18425d0e407a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,9 +80,6 @@
     </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transformation.cpp">
-      <Filter>Transformations</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Camera</Filter>
@@ -103,9 +100,6 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Transformation.h">
-      <Filter>Transformations</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Camera</Filter>
@@ -234,6 +228,12 @@
     </None>
     <None Include="assets\Shaders\astroids.fs">
       <Filter>Resource Files\Shaders\SpaceScene</Filter>
+    </None>
+    <None Include="assets\Shaders\Starwars.fs">
+      <Filter>Resource Files\Shaders\Starwars</Filter>
+    </None>
+    <None Include="assets\Shaders\Starwars.vs">
+      <Filter>Resource Files\Shaders\Starwars</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -146,7 +146,6 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="Transformation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -155,7 +154,6 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\Default_Models\Cube.json" />
@@ -194,6 +192,8 @@
     <None Include="assets\Shaders\shader.vs" />
     <None Include="assets\Shaders\Skybox.frag" />
     <None Include="assets\Shaders\Skybox.vert" />
+    <None Include="assets\Shaders\Starwars.fs" />
+    <None Include="assets\Shaders\Starwars.vs" />
     <None Include="Assets\Shaders\VertexShader.glsl" />
     <None Include="assets\Shaders\yellow.fs" />
   </ItemGroup>

@@ -1,19 +1,105 @@
 #include "Model.h"
 
-Model::Model(const std::string& path, bool gamma) : gammaCorrection(gamma) {
+Model::Model(const std::string& path, bool gamma) : gammaCorrection(gamma) 
+{
     loadModel("assets/Models/" + path + "/" + path + ".ply");
 }
 
-void Model::Draw(Shader& shader) {
+void Model::Draw(Shader& shader) 
+{
     for (unsigned int i = 0; i < meshes.size(); i++)
         meshes[i].Draw(shader);
 }
 
-void Model::loadModel(const std::string& path) {
+void Model::loadPLYModel(const std::string& path) 
+{
+    std::ifstream file(path);
+    if (!file.is_open()) {
+        std::cout << "ERROR::MODEL::Failed to open PLY file: " << path << std::endl;
+        return;
+    }
+
+    std::string line;
+    unsigned int numVertices = 0;
+    unsigned int numFaces = 0;
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string element;
+        iss >> element;
+
+        if (element == "element") {
+            std::string elementType;
+            iss >> elementType;
+
+            if (elementType == "vertex") {
+                iss >> numVertices;
+            }
+            else if (elementType == "face") {
+                iss >> numFaces;
+            }
+        }
+        else if (element == "end_header") {
+            break;
+        }
+    }
+
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
+
+    for (unsigned int i = 0; i < numVertices; ++i) {
+        Vertex vertex;
+        file >> vertex.Position.x >> vertex.Position.y >> vertex.Position.z
+            >> vertex.Normal.x >> vertex.Normal.y >> vertex.Normal.z
+            >> vertex.TexCoords.x >> vertex.TexCoords.y;
+
+        vertices.push_back(vertex);
+    }
+
+    for (unsigned int i = 0; i < numFaces; ++i) {
+        unsigned int numIndices;
+        file >> numIndices;
+
+        if (numIndices == 3) {  // Assuming triangles
+            unsigned int index1, index2, index3;
+            file >> index1 >> index2 >> index3;
+            indices.push_back(index1);
+            indices.push_back(index2);
+            indices.push_back(index3);
+        }
+    }
+
+    file.close();
+
+    cMesh mesh(vertices, indices, std::vector<Texture>());
+    meshes.push_back(mesh);
+}
+
+void Model::Translate(const glm::vec3& translation, Shader& shader)
+{
+    for (cMesh& mesh : meshes) 
+    {
+        mesh.modelMatrix = glm::translate(mesh.modelMatrix, translation);
+        shader.setMat4("model", mesh.modelMatrix);
+    }
+}
+
+void Model::Scale(const glm::vec3& scale, Shader &shader)
+{
+    for (cMesh& mesh : meshes) 
+    {
+        mesh.modelMatrix = glm::scale(mesh.modelMatrix, scale);
+        shader.setMat4("model", mesh.modelMatrix);
+    }
+}
+
+void Model::loadModel(const std::string& path) 
+{
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
-    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
+    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) 
+    {
         std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
         return;
     }
@@ -22,7 +108,8 @@ void Model::loadModel(const std::string& path) {
     processNode(scene->mRootNode, scene);
 }
 
-void Model::processNode(aiNode* node, const aiScene* scene) {
+void Model::processNode(aiNode* node, const aiScene* scene)
+{
     for (unsigned int i = 0; i < node->mNumMeshes; i++)
         meshes.push_back(processMesh(scene->mMeshes[node->mMeshes[i]], scene));
 
@@ -30,7 +117,8 @@ void Model::processNode(aiNode* node, const aiScene* scene) {
         processNode(node->mChildren[i], scene);
 }
 
-cMesh Model::processMesh(aiMesh* mesh, const aiScene* scene) {
+cMesh Model::processMesh(aiMesh* mesh, const aiScene* scene) 
+{
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
     std::vector<Texture> textures;
@@ -108,18 +196,22 @@ cMesh Model::processMesh(aiMesh* mesh, const aiScene* scene) {
 
 std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName) {
     std::vector<Texture> textures;
-    for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
+    for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) 
+    {
         aiString str;
         mat->GetTexture(type, i, &str);
         bool skip = false;
-        for (unsigned int j = 0; j < textures_loaded.size(); j++) {
-            if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0) {
+        for (unsigned int j = 0; j < textures_loaded.size(); j++) 
+        {
+            if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0) 
+            {
                 textures.push_back(textures_loaded[j]);
                 skip = true;
                 break;
             }
         }
-        if (!skip) {
+        if (!skip) 
+        {
             Texture texture;
             texture.id = TextureFromFile(str.C_Str(), this->directory);
             texture.type = typeName;
@@ -131,7 +223,8 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType 
     return textures;
 }
 
-unsigned int TextureFromFile(const char* path, const std::string& directory, bool gamma) {
+unsigned int TextureFromFile(const char* path, const std::string& directory, bool gamma) 
+{
     std::string filename = std::string(path);
     filename = directory + '/' + filename;
 
@@ -160,7 +253,8 @@ unsigned int TextureFromFile(const char* path, const std::string& directory, boo
 
         stbi_image_free(data);
     }
-    else {
+    else 
+    {
         std::cout << "Texture failed to load at path: " << path << std::endl;
         stbi_image_free(data);
     }
