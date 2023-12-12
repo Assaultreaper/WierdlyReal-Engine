@@ -19,8 +19,8 @@ class GlobalVariables
 {
 public:
 	static GlobalVariables _global;
-	static const int SCR_WIDTH = 800;
-	static const int SCR_HEIGHT = 800;
+	static const int SCR_WIDTH = 1920;
+	static const int SCR_HEIGHT = 1080;
 
 	const int OPEN_GL_VERSION = (int)4.5;
 

@@ -160,6 +160,8 @@
   <ItemGroup>
     <None Include="assets\Shaders\AABB.fs" />
     <None Include="assets\Shaders\AABB.vs" />
+    <None Include="assets\Shaders\Skybox.fs" />
+    <None Include="assets\Shaders\Skybox.vs" />
     <None Include="assets\Shaders\UnlitShader_WithoutTextures.fs" />
     <None Include="assets\Shaders\UnlitShader_WithoutTextures.vs" />
     <None Include="assets\Shaders\UnlitShader_WithTextures.fs" />

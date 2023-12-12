@@ -31,38 +31,23 @@
     <Filter Include="Model">
       <UniqueIdentifier>{ac5cf23d-e473-47ea-be92-5d2306cde654}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Shaders\DepthTesting">
-      <UniqueIdentifier>{ad8504f6-78bb-4268-b037-b49ef6e22d52}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\StencilTesting">
-      <UniqueIdentifier>{a3ed8159-3142-46cb-9ac9-549ed0af47a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\Blending">
-      <UniqueIdentifier>{2b87b268-6130-424d-a1a2-1f2ea7d031e1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Primitive Models">
       <UniqueIdentifier>{bf24eb43-c281-4647-9659-811a22d340f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\frameBufferTesting">
-      <UniqueIdentifier>{84dbe685-a150-4ee5-abe0-d90d063db33d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\CubeMap">
-      <UniqueIdentifier>{ca8510b9-3b7d-4cef-aa74-8315271b908f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\AdvancedGLSL">
-      <UniqueIdentifier>{7a3dfdc9-793c-4a6e-b3b9-0eec7d9b9da9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\GeometryShader">
-      <UniqueIdentifier>{4ca61e80-2769-4d8d-84d2-ef6f702259a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\SpaceScene">
-      <UniqueIdentifier>{80820727-9678-468f-a544-7f845d5de8bc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Textures">
       <UniqueIdentifier>{4a5b1e8b-c199-4baf-875a-54ac156b1a04}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Shaders\Starwars">
-      <UniqueIdentifier>{1d1bfda0-d724-41af-83e4-18425d0e407a}</UniqueIdentifier>
+    <Filter Include="Resource Files\Shaders\UnlitShader_WithoutTex">
+      <UniqueIdentifier>{a67ed3e2-2af6-4cbb-a0bc-8e6653e919a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\UnlitShader_WithTex">
+      <UniqueIdentifier>{6117b526-297f-4664-bae9-39fea112545a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\AABB">
+      <UniqueIdentifier>{d46637bb-34eb-44b2-a5f9-524ecb7eee9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\Skybox">
+      <UniqueIdentifier>{fb8d9375-f06c-4123-87d9-0390b4b192aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +78,9 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Textures</Filter>
     </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GlobalVaribles.h">
@@ -113,127 +101,34 @@
     <ClInclude Include="Texture.h">
       <Filter>Textures</Filter>
     </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\FragmentShader.glsl">
-      <Filter>Resource Files\Shaders</Filter>
+    <None Include="assets\Shaders\UnlitShader_WithoutTextures.fs">
+      <Filter>Resource Files\Shaders\UnlitShader_WithoutTex</Filter>
     </None>
-    <None Include="Assets\Shaders\LightFragmentShader.glsl">
-      <Filter>Resource Files\Shaders</Filter>
+    <None Include="assets\Shaders\UnlitShader_WithoutTextures.vs">
+      <Filter>Resource Files\Shaders\UnlitShader_WithoutTex</Filter>
     </None>
-    <None Include="Assets\Shaders\LightVertexShader.glsl">
-      <Filter>Resource Files\Shaders</Filter>
+    <None Include="assets\Shaders\UnlitShader_WithTextures.fs">
+      <Filter>Resource Files\Shaders\UnlitShader_WithTex</Filter>
     </None>
-    <None Include="Assets\Shaders\VertexShader.glsl">
-      <Filter>Resource Files\Shaders</Filter>
+    <None Include="assets\Shaders\UnlitShader_WithTextures.vs">
+      <Filter>Resource Files\Shaders\UnlitShader_WithTex</Filter>
     </None>
-    <None Include="Assets\Shaders\DepthTesting.vert">
-      <Filter>Resource Files\Shaders\DepthTesting</Filter>
+    <None Include="assets\Shaders\AABB.fs">
+      <Filter>Resource Files\Shaders\AABB</Filter>
     </None>
-    <None Include="Assets\Shaders\DepthTesting.frag">
-      <Filter>Resource Files\Shaders\DepthTesting</Filter>
+    <None Include="assets\Shaders\AABB.vs">
+      <Filter>Resource Files\Shaders\AABB</Filter>
     </None>
-    <None Include="Assets\Shaders\ModelShader.frag">
-      <Filter>Resource Files\Shaders\StencilTesting</Filter>
+    <None Include="assets\Shaders\Skybox.fs">
+      <Filter>Resource Files\Shaders\Skybox</Filter>
     </None>
-    <None Include="Assets\Shaders\ModelShader.vert">
-      <Filter>Resource Files\Shaders\StencilTesting</Filter>
-    </None>
-    <None Include="Assets\Shaders\ModelStencil.frag">
-      <Filter>Resource Files\Shaders\StencilTesting</Filter>
-    </None>
-    <None Include="assets\Shaders\Blend.frag">
-      <Filter>Resource Files\Shaders\Blending</Filter>
-    </None>
-    <None Include="assets\Shaders\Blend.vert">
-      <Filter>Resource Files\Shaders\Blending</Filter>
-    </None>
-    <None Include="assets\Default_Models\Cube.json">
-      <Filter>Resource Files\Primitive Models</Filter>
-    </None>
-    <None Include="assets\Default_Models\Plane.json">
-      <Filter>Resource Files\Primitive Models</Filter>
-    </None>
-    <None Include="assets\Default_Models\transparent.json">
-      <Filter>Resource Files\Primitive Models</Filter>
-    </None>
-    <None Include="assets\Shaders\framebuffer.fs">
-      <Filter>Resource Files\Shaders\frameBufferTesting</Filter>
-    </None>
-    <None Include="assets\Shaders\framebuffer_screen.vs">
-      <Filter>Resource Files\Shaders\frameBufferTesting</Filter>
-    </None>
-    <None Include="assets\Shaders\framebuffer_screen.fs">
-      <Filter>Resource Files\Shaders\frameBufferTesting</Filter>
-    </None>
-    <None Include="assets\Shaders\framebuffer.vs">
-      <Filter>Resource Files\Shaders\frameBufferTesting</Filter>
-    </None>
-    <None Include="assets\Default_Models\quad.json">
-      <Filter>Resource Files\Primitive Models</Filter>
-    </None>
-    <None Include="assets\Shaders\CubeMap.frag">
-      <Filter>Resource Files\Shaders\CubeMap</Filter>
-    </None>
-    <None Include="assets\Shaders\CubeMap.vert">
-      <Filter>Resource Files\Shaders\CubeMap</Filter>
-    </None>
-    <None Include="assets\Shaders\Skybox.frag">
-      <Filter>Resource Files\Shaders\CubeMap</Filter>
-    </None>
-    <None Include="assets\Shaders\Skybox.vert">
-      <Filter>Resource Files\Shaders\CubeMap</Filter>
-    </None>
-    <None Include="assets\Default_Models\SkyboxCube.json">
-      <Filter>Resource Files\Primitive Models</Filter>
-    </None>
-    <None Include="assets\Shaders\yellow.fs">
-      <Filter>Resource Files\Shaders\AdvancedGLSL</Filter>
-    </None>
-    <None Include="assets\Shaders\green.fs">
-      <Filter>Resource Files\Shaders\AdvancedGLSL</Filter>
-    </None>
-    <None Include="assets\Shaders\blue.fs">
-      <Filter>Resource Files\Shaders\AdvancedGLSL</Filter>
-    </None>
-    <None Include="assets\Shaders\red.fs">
-      <Filter>Resource Files\Shaders\AdvancedGLSL</Filter>
-    </None>
-    <None Include="assets\Shaders\advanced_glsl.vs">
-      <Filter>Resource Files\Shaders\AdvancedGLSL</Filter>
-    </None>
-    <None Include="assets\Shaders\normalVisualize.gs">
-      <Filter>Resource Files\Shaders\GeometryShader</Filter>
-    </None>
-    <None Include="assets\Shaders\normalVisualize.fs">
-      <Filter>Resource Files\Shaders\GeometryShader</Filter>
-    </None>
-    <None Include="assets\Shaders\normalVisualize.vs">
-      <Filter>Resource Files\Shaders\GeometryShader</Filter>
-    </None>
-    <None Include="assets\Shaders\shader.fs">
-      <Filter>Resource Files\Shaders\GeometryShader</Filter>
-    </None>
-    <None Include="assets\Shaders\shader.vs">
-      <Filter>Resource Files\Shaders\GeometryShader</Filter>
-    </None>
-    <None Include="assets\Shaders\planet.vs">
-      <Filter>Resource Files\Shaders\SpaceScene</Filter>
-    </None>
-    <None Include="assets\Shaders\astroids.vs">
-      <Filter>Resource Files\Shaders\SpaceScene</Filter>
-    </None>
-    <None Include="assets\Shaders\planet.fs">
-      <Filter>Resource Files\Shaders\SpaceScene</Filter>
-    </None>
-    <None Include="assets\Shaders\astroids.fs">
-      <Filter>Resource Files\Shaders\SpaceScene</Filter>
-    </None>
-    <None Include="assets\Shaders\Starwars.fs">
-      <Filter>Resource Files\Shaders\Starwars</Filter>
-    </None>
-    <None Include="assets\Shaders\Starwars.vs">
-      <Filter>Resource Files\Shaders\Starwars</Filter>
+    <None Include="assets\Shaders\Skybox.vs">
+      <Filter>Resource Files\Shaders\Skybox</Filter>
     </None>
   </ItemGroup>
 </Project>
