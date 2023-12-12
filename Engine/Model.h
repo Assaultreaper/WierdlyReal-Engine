@@ -16,6 +16,7 @@
 #include <map>
 #include <vector>
 #include <glm/gtc/matrix_transform.hpp>
+#include "Physics.h"
 
 unsigned int TextureFromFile(const char* path, const std::string& directory, bool gamma = false);
 
@@ -28,9 +29,12 @@ public:
 
     Model(const std::string& path, bool gamma = false);
 
-    void Draw(Shader& shader);
+    void Draw(Shader& shader) const;
 
     void loadPLYModel(const std::string& path);
+
+    Physics::AABB CalculateAABB() const;
+    void RenderAABB(const Shader& shader) const;
 
     void Translate(const glm::vec3& translation, Shader& shader);
     void Scale(const glm::vec3& scale, Shader& shader);
@@ -42,4 +46,4 @@ private:
     std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
 };
 
-#endif
+#endif // MODEL_H

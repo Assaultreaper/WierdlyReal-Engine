@@ -8,8 +8,7 @@
 #include <string>
 #include <vector>
 
-struct Vertex 
-{
+struct Vertex {
     glm::vec3 Position;
     glm::vec3 Normal;
     glm::vec2 TexCoords;
@@ -17,8 +16,7 @@ struct Vertex
     glm::vec3 Bitangent;
 };
 
-struct Texture 
-{
+struct Texture {
     unsigned int id;
     std::string type;
     std::string path;
@@ -30,12 +28,12 @@ public:
     std::vector<unsigned int> indices;
     std::vector<Texture> textures;
     unsigned int VAO;
-    
+
     glm::mat4 modelMatrix;
 
     cMesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices, const std::vector<Texture>& textures);
 
-    void Draw(Shader& shader);
+    void Draw(Shader& shader) const;
 
 private:
     unsigned int VBO, EBO;
@@ -43,4 +41,4 @@ private:
     void setupMesh();
 };
 
-#endif
+#endif // MESH_H

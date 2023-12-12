@@ -25,6 +25,32 @@ void GlobalVariables::processInput(GLFWwindow* window)
     {
         camera.ProcessKeyboard(RIGHT, deltaTime);
     }
+    if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+    {
+        GlobalVariables::_global.movingXwing = true;
+    }
+}
+
+void GlobalVariables::RenderModel(Shader& shader, const Model& model, unsigned int texture, const glm::vec3& position, const glm::vec3& scale)
+{
+    shader.use();
+
+    // view/projection transformations
+    glm::mat4 projection = glm::perspective(glm::radians(GlobalVariables::_global.camera.Zoom), (float)GlobalVariables::_global.SCR_WIDTH / (float)GlobalVariables::_global.SCR_HEIGHT, 0.1f, 10000.0f);
+    glm::mat4 view = GlobalVariables::_global.camera.GetViewMatrix();
+    shader.setMat4("projection", projection);
+    shader.setMat4("view", view);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    shader.setInt("texture0", 0);
+
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, position);
+    modelMatrix = glm::scale(modelMatrix, scale);
+    shader.setMat4("model", modelMatrix);
+
+    model.Draw(shader);
 }
 
 unsigned int GlobalVariables::loadTexture(char const* path)
@@ -124,3 +150,74 @@ void GlobalVariables::scroll_callback(GLFWwindow* window, double xoffset, double
 {
     GlobalVariables::_global.camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
+
+void GlobalVariables::MoveXwing(glm::vec3& xwingPos, const glm::vec3& targetPos)
+{
+    glm::vec3 direction = glm::normalize(targetPos - xwingPos);
+    float speed = 10.0f * GlobalVariables::_global.deltaTime;
+    xwingPos += speed * direction;
+}
+
+
+void GlobalVariables::RenderAABB(const Shader& shader, const glm::vec3& position, const glm::vec3& min, const glm::vec3& max)
+{
+    // Define vertices and indices
+    GLfloat vertices[] = {
+        -0.5f, -0.5f, -0.5f,
+         0.5f, -0.5f, -0.5f,
+         0.5f,  0.5f, -0.5f,
+        -0.5f,  0.5f, -0.5f,
+        -0.5f, -0.5f,  0.5f,
+         0.5f, -0.5f,  0.5f,
+         0.5f,  0.5f,  0.5f,
+        -0.5f,  0.5f,  0.5f
+    };
+
+    GLuint indices[] = {
+        0, 1, 1, 2, 2, 3, 3, 0,
+        4, 5, 5, 6, 6, 7, 7, 4,
+        0, 4, 1, 5, 2, 6, 3, 7
+    };
+
+    // Generate and bind buffers
+    GLuint VBO, VAO, EBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
+
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    // Specify vertex attribute pointers
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+    // Use the provided shader
+    shader.use();
+
+    // Set model matrix (position and size)
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, position);
+    shader.setMat4("model", model);
+
+    // Render the AABB
+    glBindVertexArray(VAO);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glDrawElements(GL_LINES, 24, GL_UNSIGNED_INT, 0);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glBindVertexArray(0);
+
+    // Clean up buffers
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
+}
+

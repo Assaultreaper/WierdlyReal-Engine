@@ -1,17 +1,17 @@
 #include "Model.h"
 
-Model::Model(const std::string& path, bool gamma) : gammaCorrection(gamma) 
-{
+#include "Model.h"
+
+Model::Model(const std::string& path, bool gamma) : gammaCorrection(gamma), directory() {
     loadModel("assets/Models/" + path + "/" + path + ".ply");
 }
 
-void Model::Draw(Shader& shader) 
-{
+void Model::Draw(Shader& shader) const {
     for (unsigned int i = 0; i < meshes.size(); i++)
         meshes[i].Draw(shader);
 }
 
-void Model::loadPLYModel(const std::string& path) 
+void Model::loadPLYModel(const std::string& path)
 {
     std::ifstream file(path);
     if (!file.is_open()) {
@@ -75,30 +75,133 @@ void Model::loadPLYModel(const std::string& path)
     meshes.push_back(mesh);
 }
 
+Physics::AABB Model::CalculateAABB() const
+{
+    if (meshes.empty())
+    {
+        // Return an invalid AABB if there are no meshes
+        return Physics::AABB();
+    }
+
+    std::vector<glm::vec3> vertices;
+
+    for (const cMesh& mesh : meshes)
+    {
+        const std::vector<Vertex>& meshVertices = mesh.vertices;
+
+        for (const Vertex& vertex : meshVertices)
+        {
+            vertices.push_back(vertex.Position);
+        }
+    }
+
+    if (vertices.empty())
+    {
+        // Return an invalid AABB if there are no vertices
+        return Physics::AABB();
+    }
+
+    glm::vec3 minBounds = vertices[0];
+    glm::vec3 maxBounds = vertices[0];
+
+    for (const glm::vec3& vertex : vertices)
+    {
+        minBounds = glm::min(minBounds, vertex);
+        maxBounds = glm::max(maxBounds, vertex);
+    }
+
+    return Physics::AABB(minBounds, maxBounds);
+}
+
+void Model::RenderAABB(const Shader& shader) const
+{
+    Physics::AABB aabb = CalculateAABB();
+    glm::vec3 minBounds = aabb.GetMinBounds();
+    glm::vec3 maxBounds = aabb.GetMaxBounds();
+
+    // Define vertices and indices
+    GLfloat vertices[] = {
+        minBounds.x, minBounds.y, minBounds.z,
+        maxBounds.x, minBounds.y, minBounds.z,
+        maxBounds.x, maxBounds.y, minBounds.z,
+        minBounds.x, maxBounds.y, minBounds.z,
+        minBounds.x, minBounds.y, maxBounds.z,
+        maxBounds.x, minBounds.y, maxBounds.z,
+        maxBounds.x, maxBounds.y, maxBounds.z,
+        minBounds.x, maxBounds.y, maxBounds.z
+    };
+
+    GLuint indices[] = {
+        0, 1, 1, 2, 2, 3, 3, 0,
+        4, 5, 5, 6, 6, 7, 7, 4,
+        0, 4, 1, 5, 2, 6, 3, 7
+    };
+
+    // Generate and bind buffers
+    GLuint VBO, VAO, EBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
+
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    // Specify vertex attribute pointers
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+    // Use the provided shader
+    shader.use();
+
+    // Set model matrix (position and size)
+    glm::mat4 model = glm::mat4(1.0f);
+    shader.setMat4("model", model);
+
+    // Render the AABB
+    glBindVertexArray(VAO);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glDrawElements(GL_LINES, 24, GL_UNSIGNED_INT, 0);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glBindVertexArray(0);
+
+    // Clean up buffers
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
+}
+
 void Model::Translate(const glm::vec3& translation, Shader& shader)
 {
-    for (cMesh& mesh : meshes) 
+    for (cMesh& mesh : meshes)
     {
         mesh.modelMatrix = glm::translate(mesh.modelMatrix, translation);
         shader.setMat4("model", mesh.modelMatrix);
     }
 }
 
-void Model::Scale(const glm::vec3& scale, Shader &shader)
+void Model::Scale(const glm::vec3& scale, Shader& shader)
 {
-    for (cMesh& mesh : meshes) 
+    for (cMesh& mesh : meshes)
     {
         mesh.modelMatrix = glm::scale(mesh.modelMatrix, scale);
         shader.setMat4("model", mesh.modelMatrix);
     }
 }
 
-void Model::loadModel(const std::string& path) 
+void Model::loadModel(const std::string& path)
 {
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
-    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) 
+    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
         std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
         return;
@@ -117,7 +220,7 @@ void Model::processNode(aiNode* node, const aiScene* scene)
         processNode(node->mChildren[i], scene);
 }
 
-cMesh Model::processMesh(aiMesh* mesh, const aiScene* scene) 
+cMesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 {
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
@@ -196,21 +299,21 @@ cMesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 
 std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName) {
     std::vector<Texture> textures;
-    for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) 
+    for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
     {
         aiString str;
         mat->GetTexture(type, i, &str);
         bool skip = false;
-        for (unsigned int j = 0; j < textures_loaded.size(); j++) 
+        for (unsigned int j = 0; j < textures_loaded.size(); j++)
         {
-            if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0) 
+            if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0)
             {
                 textures.push_back(textures_loaded[j]);
                 skip = true;
                 break;
             }
         }
-        if (!skip) 
+        if (!skip)
         {
             Texture texture;
             texture.id = TextureFromFile(str.C_Str(), this->directory);
@@ -223,7 +326,7 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType 
     return textures;
 }
 
-unsigned int TextureFromFile(const char* path, const std::string& directory, bool gamma) 
+unsigned int TextureFromFile(const char* path, const std::string& directory, bool gamma)
 {
     std::string filename = std::string(path);
     filename = directory + '/' + filename;
@@ -253,7 +356,7 @@ unsigned int TextureFromFile(const char* path, const std::string& directory, boo
 
         stbi_image_free(data);
     }
-    else 
+    else
     {
         std::cout << "Texture failed to load at path: " << path << std::endl;
         stbi_image_free(data);

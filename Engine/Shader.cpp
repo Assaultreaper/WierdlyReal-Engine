@@ -88,7 +88,11 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
     }
 }
 
-void Shader::use()
+Shader::~Shader() {
+    glDeleteProgram(ID);
+}
+
+void Shader::use() const
 {
     glUseProgram(ID);
 }

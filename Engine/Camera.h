@@ -12,8 +12,7 @@ enum Camera_Movement {
     RIGHT
 };
 
-class Camera
-{
+class Camera {
 public:
     glm::vec3 Position;
     glm::vec3 Front;
@@ -41,4 +40,4 @@ private:
     void updateCameraVectors();
 };
 
-#endif
+#endif // CAMERA_H
